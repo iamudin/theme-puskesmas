@@ -86,7 +86,7 @@
   </div>
 
   <!-- Jadwal Pelayanan -->
-<div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6">
+<div class="bg-gradient-to-r from-orange-100 via-green-yellow to-green-200  rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6">
   <h2 class="text-xl font-bold flex items-center mb-4">
     <span class="mr-2">💛</span> Jadwal Pelayanan
   </h2>
@@ -143,7 +143,7 @@
     <!-- Berita Utama -->
     @foreach(query()->index_limit('berita',5) as $row)
     @if($loop->first)
-     <a href="">
+     <a href="{{ $row->link }}">
     <div class="relative rounded-xl overflow-hidden shadow-md mb-4">
       <img src="{{ $row->thumbnail }}" alt="Berita Utama" class="w-full h-48 object-cover">
       <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex flex-col justify-end p-4">
@@ -159,7 +159,7 @@
         <img src="{{ $row->thumbnail }}" class="w-24 h-16 object-cover rounded-md shadow">
         <div>
           <p class="text-xs text-gray-500">{{ $row->created_at->translatedFormat('d F Y') }}</p>
-          <a href="#" class="font-medium text-gray-800 hover:text-teal-600">{{ $row->title }}</a>
+          <a href="{{ $row->link }}" class="font-medium text-gray-800 hover:text-teal-600">{{ $row->title }}</a>
         </div>
       </li>
      @endif
@@ -169,7 +169,7 @@
 
   <!-- === Kolom 2: Jenis Layanan === -->
   <div>
-    <h2 class="text-xl font-bold text-gray-800 mb-4">Jenis Layanan</h2>
+    <h2 class="text-xl font-bold text-gray-800 mb-4"> <i class="fa fa-heart"></i> Jenis Layanan</h2>
     @php
 $colors = [
     'bg-teal-50 hover:bg-teal-100',
@@ -180,7 +180,7 @@ $colors = [
 @endphp
     <div class="grid gap-4">
       @foreach(query()->index_limit('layanan',5) as $key=>$row)
-      <a href="">
+      <a href="{{ $row->link }}">
        <div class="p-4 rounded-xl shadow {{ $colors[$key % count($colors)] }} transition-colors cursor-pointer">
         <h3 class="font-semibold text-teal-700">{{ $row->title }}</h3>
         <p class="text-sm text-gray-600">{{ $row->description }}</p>
@@ -193,7 +193,7 @@ $colors = [
 
   <!-- === Kolom 3: FAQ === -->
   <div>
-    <h2 class="text-xl font-bold text-gray-800 mb-4">FAQ</h2>
+    <h2 class="text-xl font-bold text-gray-800 mb-4"> <i class="fa fa-question"></i> FAQ</h2>
     <div class="space-y-3">
       <!-- Item 1 -->
       @foreach(query()->published()->onType('faq')->get() as $row)
@@ -231,7 +231,7 @@ $colors = [
   });
 </script>
 <section class="max-w-7xl mx-auto mb-10 flex flex-col justify-center items-center bg-gray-50 px-4">
-  <h2 class="text-2xl font-bold text-gray-800 mb-6">Kepegawaian</h2>
+  <h2 class="text-2xl font-bold text-gray-800 mb-6"> <i class="fa fa-user"></i> Kepegawaian</h2>
 
   <div class="relative w-full max-w-7xl overflow-hidden">
     <!-- Container Slider -->

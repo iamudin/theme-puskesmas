@@ -25,16 +25,20 @@
       <div class="flex justify-between items-center h-20">
 
         <!-- Logo -->
-        <div class="flex-shrink-0">
-           <a href="/"> <img src="{{ get_option('logo') }}" 
-       alt="Logo Puskesmas" 
-       class="h-12 w-auto object-contain" />
-       </a>
-        </div>
+         <a href="/" class="flex items-center space-x-2" title="Halaman Utama">
+      <!-- Logo -->
+      <img src="{{ get_option('logo') }}" alt="Logo Puskesmas" class="w-12 h-12 object-contain">
+
+      <!-- Brand Name -->
+       <div class="leading-snug">
+        <h1 class="text-xl my-0 font-bold text-gray-800 leading-tight">{{ logo_upt(get_option('nama'))[0] }}</h1>
+        <h2 class="text-lg font-semibold text-green-700">{{ logo_upt(get_option('nama'))[1] }}</h2>
+      </div>
+    </a>
 
         <!-- Desktop Menu -->
       <nav class="hidden md:flex space-x-6 items-center relative">
-  <a href="#" class="text-gray-600 hover:text-teal-700">Beranda</a>
+  <a href="/" class="text-gray-600 hover:text-teal-700">Beranda</a>
 
   <!-- Layanan dengan submenu -->
   @foreach(get_menu('header') as $row)
@@ -118,38 +122,30 @@
     <!-- Mobile Menu -->
 <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
   <nav class="px-4 pt-4 pb-6 space-y-2">
-    <a href="#" class="block text-gray-600 hover:text-teal-700">Beranda</a>
-
+    <a href="/" class="block text-gray-600 hover:text-teal-700">Beranda</a>
+ @foreach(get_menu('header') as $row)
+  @if($row->sub)
     <!-- Layanan dengan submenu -->
     <div class="mobile-submenu">
       <button class="submenu-toggle-mobile flex justify-between w-full text-gray-600 hover:text-teal-700 focus:outline-none py-2">
-        <span>Layanan</span>
+        <span>{{ $row->name }}</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       <div class="submenu hidden pl-4 space-y-2">
-        <a href="#" class="block text-gray-600 hover:text-teal-700">Rawat Jalan</a>
-        <a href="#" class="block text-gray-600 hover:text-teal-700">Imunisasi</a>
-        <a href="#" class="block text-gray-600 hover:text-teal-700">UGD</a>
+      @foreach($row->sub as $row2)
+
+        <a href="{{ $row2->url }}" class="block text-gray-600 hover:text-teal-700">{{ $row2->name }}</a>
+      @endforeach
       </div>
     </div>
+@else
 
-    <!-- Tentang dengan submenu -->
-    <div class="mobile-submenu">
-      <button class="submenu-toggle-mobile flex justify-between w-full text-gray-600 hover:text-teal-700 focus:outline-none py-2">
-        <span>Tentang</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-      <div class="submenu hidden pl-4 space-y-2">
-        <a href="#" class="block text-gray-600 hover:text-teal-700">Sejarah</a>
-        <a href="#" class="block text-gray-600 hover:text-teal-700">Visi Misi</a>
-      </div>
-    </div>
 
-    <a href="#kontak" class="block text-gray-600 hover:text-teal-700">Kontak</a>
+    <a href="{{ $row->url }}" class="block text-gray-600 hover:text-teal-700">{{ $row->name }}</a>
+    @endif
+    @endforeach
   </nav>
 </div>
 

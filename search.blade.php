@@ -1,74 +1,67 @@
-<section class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-3 gap-8">
-  <!-- Konten Detail Berita -->
-  <article class="md:col-span-2  rounded-2xl  transition-shadow duration-300">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3">
-      Judul Berita Utama Puskesmas Bengkalis
+                                                    <main class="max-w-7xl mx-auto px-4 py-8" style="min-height:60vh">
+    <form action="/search" method="post"
+        class="mb-10 flex items-center w-full max-w-md mx-auto bg-white/70 backdrop-blur-sm rounded-full shadow-lg overflow-hidden">
+        @csrf
+        <span class="px-4 text-gray-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z" />
+            </svg>
+        </span>
+        <input type="text" name="keyword" placeholder="Cari informasi..."
+            class="w-full bg-transparent text-black text-base md:text-lg px-2 py-3 outline-none placeholder-gray-600">
+        <button
+            class="bg-yellow-400 text-black px-4 md:px-5 py-3 text-base md:text-lg font-medium hover:bg-yellow-500 transition rounded-none">
+            Cari
+        </button>
+    </form>
+
+    <h1 class="text-xl md:text-2xl font-bold text-gray-400 mb-6">
+        <i class="fa fa-search"></i>
+        Hasil Pencarian untuk: <span class="text-green-600">"{{ $keyword }}"</span> total {{$index->total()}} hasil
     </h1>
-    <p class="text-sm text-gray-500 mb-6">Dipublikasikan: 16 September 2025 • oleh Admin</p>
-    <img src="https://picsum.photos/800/400" alt="Gambar Berita"
-         class="w-full object-cover rounded-xl mb-6">
 
-    <div class="prose prose-sm md:prose-lg text-gray-700 max-w-none">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna vitae libero
-        porttitor mattis. Suspendisse potenti. Aliquam erat volutpat. In nec elit vel augue
-        malesuada porta. Quisque non lectus eu ex vestibulum posuere. Curabitur dictum sapien
-        a bibendum tincidunt.
-      </p>
-      <p>
-        Vivamus ut mi vel sapien volutpat gravida. Nulla ac mi neque. Sed feugiat, purus sed
-        tincidunt tincidunt, sem augue vestibulum nulla, eget bibendum elit quam nec neque.
-      </p>
-    </div>
-  </article>
+    @if (count($index) > 0)
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach ($index as $item)
+                <article
+                    class="rounded-xl w-full border border-slate-200 bg-white p-4 hover:shadow-sm transition">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        @if (!empty($item->media))
+                            <img src="{{ $item->thumbnail }}"
+                                class="w-full sm:w-24 h-40 sm:h-24 object-cover rounded-lg border">
+                        @else
+                            <div
+                                class="w-full sm:w-24 h-40 sm:h-24 grid place-items-center rounded-lg border bg-slate-100 text-slate-500">
+                                <i class="fa fa-file"></i>
+                            </div>
+                        @endif
+                        <div class="flex-1 min-w-0">
+							
+                             <div class="text-xs text-slate-500 mb-1 flex items-center justify-between">
+                            <span>{{ get_module($item->type)->title }}</span>
+                            <span class="text-gray-400">{{ $item->created_at->format('d M Y') }}</span>
+                        </div>
+                            <h3 class="text-base md:text-lg font-semibold mb-1 truncate">
+                                <a href="{{ $item->link ?? '#' }}" class="hover:text-blue-600">{{ $item->title }}</a>
+                            </h3>
+                            <p class="text-sm text-slate-600 line-clamp-2">
+                                {{ $item->short_content }}
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            @endforeach
+        </div>
+    @else
+        <div
+            class="rounded-xl border border-dashed border-slate-300 p-8 text-center text-slate-500">
+            Tidak ada hasil ditemukan.
+        </div>
+    @endif
 
-  <!-- Sidebar Kanan -->
-  <aside class="space-y-6">
-    <!-- Widget: Berita Terbaru -->
-    <div class="bg-white rounded-2xl shadow-md p-6">
-      <h2 class="text-lg font-bold text-gray-800 border-b pb-3 mb-4">Berita Terbaru</h2>
-      <ul class="space-y-4">
-        <li class="flex items-start space-x-3">
-          <img src="https://picsum.photos/80/60" alt="thumb"
-               class="w-20 h-14 object-cover rounded-md">
-          <a href="#" class="text-gray-700 hover:text-teal-600 font-medium line-clamp-2">
-            Pelayanan Posyandu Balita di Desa Pangkalan Batang
-          </a>
-        </li>
-        <li class="flex items-start space-x-3">
-          <img src="https://picsum.photos/81/61" alt="thumb"
-               class="w-20 h-14 object-cover rounded-md">
-          <a href="#" class="text-gray-700 hover:text-teal-600 font-medium line-clamp-2">
-            Sosialisasi Program Germas di Lingkungan Masyarakat
-          </a>
-        </li>
-        <li class="flex items-start space-x-3">
-          <img src="https://picsum.photos/82/62" alt="thumb"
-               class="w-20 h-14 object-cover rounded-md">
-          <a href="#" class="text-gray-700 hover:text-teal-600 font-medium line-clamp-2">
-            Pelatihan Kader Kesehatan Desa Bengkalis
-          </a>
-        </li>
-      </ul>
+    <div class="mt-4">
+        {{ $index->links('pagination::tailwind') }}
     </div>
-
-    <!-- Widget: Pengumuman -->
-    <div class="bg-white rounded-2xl shadow-md p-6">
-      <h2 class="text-lg font-bold text-gray-800 border-b pb-3 mb-4">Pengumuman</h2>
-      <ul class="space-y-3 text-gray-700">
-        <li class="flex items-start space-x-2">
-          <span class="text-teal-600">📌</span>
-          <a href="#" class="hover:text-teal-600">Jadwal Imunisasi Bulan September</a>
-        </li>
-        <li class="flex items-start space-x-2">
-          <span class="text-teal-600">📌</span>
-          <a href="#" class="hover:text-teal-600">Penerimaan Kader Kesehatan Baru</a>
-        </li>
-        <li class="flex items-start space-x-2">
-          <span class="text-teal-600">📌</span>
-          <a href="#" class="hover:text-teal-600">Libur Layanan di Hari Nasional</a>
-        </li>
-      </ul>
-    </div>
-  </aside>
-</section>
+</main>
+                                                    

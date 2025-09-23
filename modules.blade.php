@@ -1,9 +1,8 @@
 <?php
 use_module([
-'link-terkait' => ['active'=>true,'form'=>['category'=>true],'web'=>['sortable'=>true]],
 'download' => ['web'=>['auto_query'=>true]],
-'faq'=>['active'=>true],
-'kepegawaian'=>['web'=>['detail'=>true]]
+'kepegawaian'=>['web'=>['detail'=>true],
+]
 ]);
 
 $config['option'] = ['Jadwal Rawat Jalan'=>[
@@ -20,3 +19,22 @@ $config['option'] = ['Jadwal Rawat Jalan'=>[
   ['Rawat Inap', 'text']
 ]
 ];
+
+if(!function_exists('logo_upt')){
+  function logo_upt($text){
+    $prefix = "UPT Puskesmas";
+    
+    // pastikan ada prefix "UPT Puskesmas"
+    if (stripos($text, $prefix) === 0) {
+        $instansi = $prefix;
+        // ambil sisa kalimat setelah "UPT Puskesmas"
+        $lokasi = trim(substr($text, strlen($prefix)));
+    } else {
+        // fallback kalau format tidak sesuai
+        $instansi = $text;
+        $lokasi = '';
+    }
+
+    return [$instansi,$lokasi];
+  }
+}

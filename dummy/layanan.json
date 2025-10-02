@@ -1,0 +1,35 @@
+{
+    "posts": [
+        {
+            "title": "Dummy Post 1",
+            "content": "This is a dummy post for testing purposes.",
+            "user_id": "1",
+            "childs": [
+                {
+                    "title": "Dummy Post 1",
+                    "type": "Dummy Post 1",
+                    "content": "This is a dummy post for testing purposes.",
+                    "user_id": "1"
+                }
+            ]
+        }
+       
+    ],
+    "categories": [
+        {
+            "name": "General",
+            "status": "publish",
+            "posts": [
+                {
+                    "title": "Dummy Post 2",
+                    "content": "Another dummy post to illustrate the structure.",
+                    "user_id": "1"
+                }
+            ]
+        },
+        {
+            "name": "Updates",
+            "status": "publish"
+        }
+    ]
+}

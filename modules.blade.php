@@ -1,25 +1,4 @@
 <?php
-use_module([
-'download' => ['web'=>['auto_query'=>true]],
-'kepegawaian'=>['web'=>['detail'=>true],
-]
-]);
-
-$config['option'] = ['Jadwal Rawat Jalan'=>[
-  ['Rawat Jalan Senin Kamis', 'text'],
-  ['Rawat Jalan Jumat', 'text'],
-  ['Rawat Jalan Sabtu', 'text']
-],
-'Jadwal Pendaftaran'=>[
-  ['Pendaftaran Senin Kamis', 'text'],
-  ['Pendaftaran Jumat', 'text'],
-  ['Pendaftaran Sabtu', 'text'],
-],
-'Jadwal Rawat Inap'=>[
-  ['Rawat Inap', 'text']
-]
-];
-
 if(!function_exists('logo_upt')){
   function logo_upt($text){
     $prefix = "UPT Puskesmas";
@@ -37,4 +16,39 @@ if(!function_exists('logo_upt')){
 
     return [$instansi,$lokasi];
   }
-}
+  }
+
+add_option('template_asset',
+array(['Header Background','file','image/png,image/jpeg,image/webp'])
+);
+add_option('jadwal_pelayanan',[
+  ['rawat_jalan', 'break'],
+  ['rawat_jalan_senin_kamis', 'text'],
+  ['rawat_jalan_jumat', 'text'],
+  ['rawat_jalan_sabtu', 'text'],
+  ['pendaftarn', 'break'],
+  ['pendaftaran_senin_kamis', 'text'],
+  ['pendaftaran_jumat', 'text'],
+  ['pendaftarn_sabtu', 'text'],
+  ['inap', 'text'],
+  ['IGD', 'text']
+]);
+   use_module([
+	   'layanan'=>true,
+	   'sambutan'=>true,
+	   'faq'=>['active'=>true],
+	   'kepegawaian'=> ['form'=>[ 'custom_field' => [
+                    ['NIP','text'],
+                    ['Kelahiran','text'],
+                    ['Jabatan','text'],
+                    ['Pangkat/Golongan','text'],
+                    ['Pendidikan','text'],
+                    ['Tahun Mulai','text'],
+                    ['Motivasi','textarea'],
+                    ['Media Sosial', 'break'],
+                    ['Facebook', 'text'],
+                    ['Twitter', 'text'],
+                    ['Instagram', 'text'],
+                ]]]
+   ]);
+      

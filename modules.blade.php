@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 use_module([
   'download' => ['web' => ['auto_query' => true]],
   'kepegawaian' => [
@@ -10,6 +11,10 @@ use_module([
 if (!function_exists('logo_upt')) {
   function logo_upt($text)
   {
+=======
+if(!function_exists('logo_upt')){
+  function logo_upt($text){
+>>>>>>> 9bd7cbb5818c1035ad399d0a200fca65d7290d4d
     $prefix = "UPT Puskesmas";
 
     // pastikan ada prefix "UPT Puskesmas"
@@ -25,6 +30,7 @@ if (!function_exists('logo_upt')) {
 
     return [$instansi, $lokasi];
   }
+<<<<<<< HEAD
 }
 
 
@@ -113,3 +119,41 @@ add_option(
 add_option('template_asset',[
 ['background_header','file','image/png,image/jpeg']
 ]);
+=======
+  }
+
+add_option('template_asset',
+array(['Header Background','file','image/png,image/jpeg,image/webp'])
+);
+add_option('jadwal_pelayanan',[
+  ['rawat_jalan', 'break'],
+  ['rawat_jalan_senin_kamis', 'text'],
+  ['rawat_jalan_jumat', 'text'],
+  ['rawat_jalan_sabtu', 'text'],
+  ['pendaftarn', 'break'],
+  ['pendaftaran_senin_kamis', 'text'],
+  ['pendaftaran_jumat', 'text'],
+  ['pendaftarn_sabtu', 'text'],
+  ['inap', 'text'],
+  ['IGD', 'text']
+]);
+   use_module([
+	   'layanan'=>true,
+	   'sambutan'=>true,
+	   'faq'=>['active'=>true],
+	   'kepegawaian'=> ['form'=>[ 'custom_field' => [
+                    ['NIP','text'],
+                    ['Kelahiran','text'],
+                    ['Jabatan','text'],
+                    ['Pangkat/Golongan','text'],
+                    ['Pendidikan','text'],
+                    ['Tahun Mulai','text'],
+                    ['Motivasi','textarea'],
+                    ['Media Sosial', 'break'],
+                    ['Facebook', 'text'],
+                    ['Twitter', 'text'],
+                    ['Instagram', 'text'],
+                ]]]
+   ]);
+      
+>>>>>>> 9bd7cbb5818c1035ad399d0a200fca65d7290d4d

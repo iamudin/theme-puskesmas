@@ -53,7 +53,7 @@
   <!-- Copyright -->
   <div class="border-t border-teal-600 mt-6">
     <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center text-sm">
-      <p>&copy; {{ date('Y') .' '.get_option('nama')}}. All rights reserved.</p>
+      <p>&copy; {{ date('Y') .' '.get_option('nama')}}. All rights reserved. OKE</p>
       <div class="flex space-x-4 mt-3 md:mt-0">
         <a href="{{ get_option('facebook') }}" class="hover:text-yellow-300">Facebook</a>
         <a href="{{ get_option('instagram') }}" class="hover:text-yellow-300">Instagram</a>

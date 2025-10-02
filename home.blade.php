@@ -3,14 +3,92 @@
   <!-- Container full width dengan rounded di mobile saja -->
   <div class="relative overflow-hidden md:rounded-none shadow-lg">
     <!-- Wrapper slides -->
-    <div id="hero-slider" class="flex transition-transform duration-700 ease-in-out">
-      @foreach(get_banner('hero-slider',5) as $row)
-      <div class="min-w-full aspect-[16/6] flex items-center justify-center bg-cover bg-center"
-           style="background-image: url('{{ $row->image }}');">
-      
+    <style>
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeInUp {
+  animation: fadeInUp 1s ease-out forwards;
+}
+</style>
+
+<div id="hero-slider" class="flex transition-transform duration-700 ease-in-out">
+  @forelse(get_banner('hero-slider',5) as $row)
+    <div class="relative min-w-full aspect-[16/6] flex items-center justify-center bg-cover bg-center"
+         style="background-image: url('{{ $row->image }}');">
+
+      <!-- overlay hitam -->
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+      <!-- container teks + border sudut -->
+      <div class="relative z-10 text-left px-8 md:px-16">
+        <div class="relative inline-block p-6">
+
+          <!-- sudut-sudut kotak -->
+          <span class="absolute top-0 left-0 w-6 h-1 bg-yellow-400"></span>
+          <span class="absolute top-0 left-0 w-1 h-6 bg-blue-400"></span>
+
+          <span class="absolute top-0 right-0 w-6 h-1 bg-yellow-400"></span>
+          <span class="absolute top-0 right-0 w-1 h-6 bg-blue-400"></span>
+
+          <span class="absolute bottom-0 left-0 w-6 h-1 bg-yellow-400"></span>
+          <span class="absolute bottom-0 left-0 w-1 h-6 bg-blue-400"></span>
+
+          <span class="absolute bottom-0 right-0 w-6 h-1 bg-yellow-400"></span>
+          <span class="absolute bottom-0 right-0 w-1 h-6 bg-blue-400"></span>
+
+          <!-- teks -->
+          <h1 class="text-white text-3xl md:text-5xl font-bold animate-fadeInUp">
+            Selamat datang di Website
+          </h1>
+          <h2 class="text-yellow-400 text-2xl md:text-4xl font-semibold animate-fadeInUp delay-200">
+            {{ get_option('nama') }}
+          </h2>
+        </div>
       </div>
-      @endforeach
     </div>
+  @empty
+    <div class="relative min-w-full aspect-[16/6] flex items-center justify-center bg-cover bg-center"
+         style="background-image: url('https://bengkaliskab.go.id/media/pexels-pixabay-40568.webp');">
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+      <div class="relative z-10 text-left px-8 md:px-16">
+        <div class="relative inline-block p-6">
+          <!-- sudut kotak -->
+          <span class="absolute top-0 left-0 w-6 h-1 bg-yellow-400"></span>
+          <span class="absolute top-0 left-0 w-1 h-6 bg-blue-400"></span>
+
+          <span class="absolute top-0 right-0 w-6 h-1 bg-yellow-400"></span>
+          <span class="absolute top-0 right-0 w-1 h-6 bg-blue-400"></span>
+
+          <span class="absolute bottom-0 left-0 w-6 h-1 bg-yellow-400"></span>
+          <span class="absolute bottom-0 left-0 w-1 h-6 bg-blue-400"></span>
+
+          <span class="absolute bottom-0 right-0 w-6 h-1 bg-yellow-400"></span>
+          <span class="absolute bottom-0 right-0 w-1 h-6 bg-blue-400"></span>
+
+          <!-- teks -->
+          <h1 class="text-white text-3xl md:text-5xl font-bold animate-fadeInUp">
+            Selamat datang di Website
+          </h1>
+          <h2 class="text-yellow-400 text-2xl md:text-4xl font-semibold animate-fadeInUp delay-200">
+            {{ get_option('nama') }}
+          </h2>
+        </div>
+      </div>
+    </div>
+  @endforelse
+</div>
+
+
+
+
 
     <!-- Tombol Navigasi -->
     <button id="prev" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white-500 p-2 rounded-full shadow">
@@ -88,7 +166,7 @@
   <!-- Jadwal Pelayanan -->
 <div class="bg-gradient-to-r from-orange-100 via-green-yellow to-green-200  rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6">
   <h2 class="text-xl font-bold flex items-center mb-4">
-    <span class="mr-2">💛</span> Jadwal Pelayanan
+    <span class="mr-2">💛</span> Jadwal Pelayanan 
   </h2>
 
   <!-- Loket Pendaftaran -->

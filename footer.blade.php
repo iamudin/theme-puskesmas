@@ -63,6 +63,17 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
+
+<script>
+lottie.loadAnimation({
+  container: document.getElementById('lottie'),
+  renderer: "svg",
+  loop: true,
+  autoplay: true,
+  path: "/loader.json"
+});
+</script>
 
 </body>
 </html>

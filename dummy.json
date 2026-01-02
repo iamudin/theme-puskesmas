@@ -1,0 +1,37 @@
+{
+    "module": [
+        {
+            "name": "layanan",
+            "posts":[
+                {
+                    "title":"Layanan 1",
+                    "slug":"layanan-1",
+                    "content":"<p>Ini adalah layanan 1</p>"
+                },
+                {
+                    "title":"Layanan 2",
+                    "slug":"layanan-2",
+                    "content":"<p>Ini adalah layanan 2</p>"
+                },
+                {
+                    "title":"Layanan 3",
+                    "slug":"layanan-3",
+                    "content":"<p>Ini adalah layanan 3</p>"
+                }
+            ],
+            "categories":[
+                {
+                    "name":"Kategori Layanan 1",
+                    "slug":"kategori-layanan-1",
+                    "statyus":"publish"
+                },
+                {
+                    "name":"Kategori Layanan 2",
+                    "slug":"kategori-layanan-2",
+                    "statyus":"publish"
+
+                }
+            ]
+        }
+    ]
+}
